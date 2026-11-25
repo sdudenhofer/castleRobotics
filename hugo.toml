@@ -149,3 +149,7 @@ disableKinds = ["taxonomy", "term", "rss"]
     quality = 82
   [imaging.jpeg]
     quality = 82
+
+[caches]
+	[caches.images]
+		dir = ':cacheDir/images'
