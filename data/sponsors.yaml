@@ -1,0 +1,33 @@
+# Sponsors shown on the home page and the "Our Sponsors" page, in this order.
+# To add a sponsor: put the logo in assets/images/sponsors/ and add an entry below.
+sponsors:
+  - name: Toyota Indiana
+    logo: images/sponsors/toyota.jpg
+    url: https://careers.toyota.com/us/en/toyota-indiana
+  - name: Alcoa
+    logo: images/sponsors/alcoa.png
+    url: https://www.alcoa.com/global/en/home/
+  - name: Matrix
+    logo: images/sponsors/matrix.png
+    url: https://matrixteam.com/
+  - name: Koch Enterprises
+    logo: images/sponsors/koch.png
+    url: https://kochenterprises.com/
+  - name: CenterPoint Energy
+    logo: images/sponsors/centerpoint.png
+    url: https://www.centerpointenergy.com/en-us/
+  - name: Kaiser Aluminum
+    logo: images/sponsors/kaiser.webp
+    url: https://www.kaiseraluminum.com/
+  - name: Metzger Construction
+    logo: images/sponsors/metzger.webp
+    url: https://metzgerasphalt.com/
+  - name: Reed Auction Barn
+    logo: images/sponsors/reed-auction.png
+    url: https://www.reedauctionbarn.com/
+  - name: Ciholas
+    logo: images/sponsors/ciholas.webp
+    url: https://www.ciholas.com/
+  - name: SABIC
+    logo: images/sponsors/sabic.png
+    url: https://www.sabic.com/en

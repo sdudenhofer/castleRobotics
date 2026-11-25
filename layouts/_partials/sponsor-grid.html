@@ -1,0 +1,9 @@
+<ul class="sponsor-grid">
+  {{ range hugo.Data.sponsors.sponsors }}
+    <li class="sponsor-grid__item">
+      <a href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}">
+        {{ partial "img.html" (dict "src" .logo "alt" .name "width" 400 "sizes" "(min-width: 900px) 200px, 40vw") }}
+      </a>
+    </li>
+  {{ end }}
+</ul>

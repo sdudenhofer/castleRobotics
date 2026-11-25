@@ -1,0 +1,35 @@
+{{- /*
+  Responsive image from assets/.
+  Params (dict): src (e.g. "images/team/x.jpg"), alt, width (largest px, default 1200),
+  class, sizes, fill ("400x400" to crop), loading ("lazy"|"eager").
+*/ -}}
+{{- $src := strings.TrimPrefix "/" .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $max := .width | default 1200 -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $sizes := .sizes | default "100vw" -}}
+{{- with resources.Get $src -}}
+  {{- if eq .MediaType.SubType "svg" -}}
+    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" class="{{ $.class }}" loading="{{ $loading }}">
+  {{- else -}}
+    {{- $img := . -}}
+    {{- if $.fill }}{{ $img = .Fill (printf "%s webp center" $.fill) }}{{ end -}}
+    {{- $widths := slice -}}
+    {{- range slice 400 800 1200 1600 -}}
+      {{- if and (le . $max) (le . $img.Width) }}{{ $widths = $widths | append . }}{{ end -}}
+    {{- end -}}
+    {{- if not $widths }}{{ $widths = slice $img.Width }}{{ end -}}
+    {{- $srcset := slice -}}
+    {{- $last := "" -}}
+    {{- range $widths -}}
+      {{- $r := $img.Resize (printf "%dx webp" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink .) -}}
+      {{- $last = $r -}}
+    {{- end -}}
+    <img src="{{ $last.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ $sizes }}"
+      width="{{ $last.Width }}" height="{{ $last.Height }}" alt="{{ $alt }}"
+      {{- with $.class }} class="{{ . }}"{{ end }} loading="{{ $loading }}" decoding="async">
+  {{- end -}}
+{{- else -}}
+  {{- warnf "Image not found in assets/: %q" $src -}}
+{{- end -}}

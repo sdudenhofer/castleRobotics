@@ -1,0 +1,35 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__about">
+      <a class="brand brand--footer" href="{{ "/" | relURL }}" aria-label="{{ site.Title }}, home">
+        {{ partial "img.html" (dict "src" site.Params.logo "alt" "" "width" 400 "fill" "160x160" "class" "brand__logo" "sizes" "64px") }}
+        <span class="brand__text">
+          <span class="brand__name">Castle Robotics</span>
+          <span class="brand__team">FRC Team {{ site.Params.teamNumber }}</span>
+        </span>
+      </a>
+      <p class="site-footer__tagline">{{ site.Params.tagline }}</p>
+      {{ partial "social.html" . }}
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <h2 class="site-footer__heading">Quick Links</h2>
+      <ul>
+        {{ range site.Menus.footer }}<li><a href="{{ .URL }}">{{ .Name }}</a></li>{{ end }}
+      </ul>
+    </nav>
+    <div class="site-footer__contact">
+      <h2 class="site-footer__heading">Contact</h2>
+      <ul class="contact-list">
+        <li>{{ partial "icon.html" "pin" }}<a href="{{ site.Params.mapURL }}" target="_blank" rel="noopener">Castle High School<br>{{ site.Params.address }}</a></li>
+        <li>{{ partial "icon.html" "mail" }}<a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
+        <li>{{ partial "icon.html" "phone" }}<a href="tel:{{ replaceRE `[^0-9+]` "" site.Params.phone }}">{{ site.Params.phone }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div class="container site-footer__bottom-inner">
+      <p>© {{ now.Year }} Castle Robotics Club, Inc. · A 501(c)(3) nonprofit organization.</p>
+      <a href="#main" class="to-top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>

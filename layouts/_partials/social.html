@@ -1,0 +1,5 @@
+<ul class="social" aria-label="Castle Robotics on social media">
+  {{ range site.Params.social }}
+    <li><a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .name }}" title="{{ .name }}">{{ partial "icon.html" .name }}</a></li>
+  {{ end }}
+</ul>

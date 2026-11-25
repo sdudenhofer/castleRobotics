@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<section class="section">
+  <div class="container">
+    <h2 class="section__title">Student Officers</h2>
+    <ul class="people-grid">
+      {{ range .Params.officers }}
+        <li class="person">
+          {{ with .photo }}{{ partial "img.html" (dict "src" . "alt" "" "fill" "600x600" "width" 600 "class" "person__photo" "sizes" "(min-width: 900px) 260px, 45vw") }}{{ end }}
+          <h3 class="person__name">{{ .name }}</h3>
+          <p class="person__role">{{ .role }}</p>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+<section class="section section--tint">
+  <div class="container">
+    <h2 class="section__title">Head Coach &amp; Lead Mentors</h2>
+    <ul class="role-grid">
+      {{ range .Params.mentors }}
+        <li class="role-card"><p class="role-card__role">{{ .role }}</p><p class="role-card__name">{{ .name }}</p></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section__title">Board of Directors</h2>
+    <ul class="role-grid">
+      {{ range .Params.board }}
+        <li class="role-card"><p class="role-card__role">{{ .role }}</p>{{ range .names }}<p class="role-card__name">{{ . }}</p>{{ end }}</li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}

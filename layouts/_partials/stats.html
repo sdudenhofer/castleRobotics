@@ -1,0 +1,16 @@
+{{- $awards := 0 -}}
+{{- with site.GetPage "/awards" -}}
+  {{- range .Params.seasons }}{{ $awards = add $awards (len .awards) }}{{ end -}}
+{{- end -}}
+{{- $items := slice (dict "value" site.Params.founded "label" "Year Founded" "plain" true) -}}
+{{- with .Params.stats.students }}{{ $items = $items | append (dict "value" . "label" "Student Members") }}{{ end -}}
+{{- with .Params.stats.mentors }}{{ $items = $items | append (dict "value" . "label" "Mentors") }}{{ end -}}
+{{- if gt $awards 0 }}{{ $items = $items | append (dict "value" $awards "label" "FIRST Awards & Achievements") }}{{ end -}}
+<dl class="stats">
+  {{ range $items }}
+    <div class="stats__item">
+      <dt class="stats__label">{{ .label }}</dt>
+      <dd class="stats__value"{{ if not .plain }} data-count="{{ .value }}"{{ end }}>{{ .value }}</dd>
+    </div>
+  {{ end }}
+</dl>

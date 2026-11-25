@@ -1,0 +1,13 @@
+{{- /*
+  Markdown images: ![Alt text](images/folder/file.jpg "right")
+  The optional title "right" or "left" floats the image beside the text.
+*/ -}}
+{{- $dest := .Destination -}}
+{{- $align := .Title -}}
+{{- if or (strings.HasPrefix $dest "http") (not (resources.Get (strings.TrimPrefix "/" $dest))) -}}
+  <img src="{{ $dest }}" alt="{{ .Text }}" loading="lazy">
+{{- else -}}
+  <span class="md-image{{ with $align }} md-image--{{ . }}{{ end }}">
+    {{- partial "img.html" (dict "src" $dest "alt" .PlainText "width" (cond (in (slice "left" "right") $align) 600 1200) "sizes" (cond (in (slice "left" "right") $align) "240px" "(min-width: 800px) 760px, 100vw")) -}}
+  </span>
+{{- end -}}

@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<section class="section">
+  <div class="container split">
+    <div class="prose">
+      {{ .Content }}
+      {{ if .Params.form_url }}
+        <a class="btn btn--gold" href="{{ .Params.form_url }}" target="_blank" rel="noopener">Fill Out the Interest Form</a>
+      {{ else }}
+        <a class="btn btn--gold" href="{{ "/contact-2/" | relURL }}">Contact Us to Join</a>
+      {{ end }}
+    </div>
+    {{ with .Params.image }}<div class="split__media">{{ partial "img.html" (dict "src" . "alt" $.Params.image_alt "width" 800 "sizes" "(min-width: 900px) 480px, 90vw") }}</div>{{ end }}
+  </div>
+</section>
+<section class="section section--tint">
+  <div class="container cards-2">
+    <div class="panel">
+      <h2>Interested In?</h2>
+      <ul class="chips">{{ range .Params.interests }}<li>{{ . }}</li>{{ end }}</ul>
+    </div>
+    <div class="panel">
+      <h2>Our Teams</h2>
+      <ul class="chips chips--blue">{{ range .Params.teams }}<li>{{ . }}</li>{{ end }}</ul>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section__title center">Top 10 Benefits for You</h2>
+    <ol class="benefits">{{ range .Params.benefits }}<li>{{ . }}</li>{{ end }}</ol>
+  </div>
+</section>
+<section class="section section--tint">
+  <div class="container center">
+    <h2 class="section__title">Connect with Us</h2>
+    {{ partial "social.html" . }}
+  </div>
+</section>
+{{ end }}

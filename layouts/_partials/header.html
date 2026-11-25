@@ -1,0 +1,53 @@
+<div class="topbar">
+  <div class="container topbar__inner">
+    <a class="topbar__address" href="{{ site.Params.mapURL }}" target="_blank" rel="noopener">
+      {{ partial "icon.html" "pin" }}<span>{{ site.Params.address }}</span>
+    </a>
+    {{ partial "social.html" . }}
+  </div>
+</div>
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }}, home">
+      {{ partial "img.html" (dict "src" site.Params.logo "alt" "" "width" 400 "fill" "160x160" "class" "brand__logo" "sizes" "64px" "loading" "eager") }}
+      <span class="brand__text">
+        <span class="brand__name">Castle Robotics</span>
+        <span class="brand__team">FRC Team {{ site.Params.teamNumber }}</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main" data-nav>
+      <ul class="site-nav__list">
+        {{ $page := . }}
+        {{ range site.Menus.main }}
+          {{ $active := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
+          {{ if .HasChildren }}
+            <li class="site-nav__item has-dropdown{{ if $active }} is-active{{ end }}">
+              <button class="site-nav__link site-nav__trigger" type="button" aria-expanded="false" data-dropdown-toggle>
+                {{ .Name }}{{ partial "icon.html" "chevron" }}
+              </button>
+              <ul class="dropdown">
+                {{ range .Children }}
+                  {{ $external := strings.HasPrefix .URL "http" }}
+                  <li><a class="dropdown__link{{ if $page.IsMenuCurrent "main" . }} is-current{{ end }}" href="{{ .URL }}"
+                    {{- if $external }} target="_blank" rel="noopener"{{ end }}
+                    {{- if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}{{ if $external }} <span aria-hidden="true">↗</span>{{ end }}</a></li>
+                {{ end }}
+              </ul>
+            </li>
+          {{ else }}
+            <li class="site-nav__item{{ if $active }} is-active{{ end }}">
+              <a class="site-nav__link" href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+            </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+      <a class="btn btn--gold site-nav__cta" href="{{ "/become-a-team-sponsor/" | relURL }}">Support Us</a>
+    </nav>
+  </div>
+</header>

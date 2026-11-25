@@ -1,0 +1,18 @@
+# Cloudflare Pages redirects: keep old WordPress links working.
+/pdfviewer/castle-robotics-handbook-2024/*  /forms/  301
+/pdfviewer/spirit-wear-2026/*               /resources/spirit-wear/  301
+/pdfviewer/*                                /forms/  301
+/wp-content/uploads/2026/10/Robotics-Handbook-26-27.pdf  /files/robotics-handbook-2026-27.pdf  301
+/wp-content/uploads/2023/09/Castle-Robotics-Sponsorship-Levels-and-Recognition-Table.pdf  /files/sponsorship-levels.pdf  301
+/wp-content/uploads/2022/11/Safety-Portal-FIRST-Robotics-Student-Learners-Guide.pdf  /files/safety-portal-student-guide.pdf  301
+/wp-content/uploads/2022/11/Castle-Robotics-Club-Safety-Manual.pdf  /files/safety-manual.pdf  301
+/wp-content/uploads/2022/11/Castle-Robotics-Safety-Contract.pdf  /files/safety-contract.pdf  301
+/sponsors/                                  /sponsors/our-sponsors/  301
+/resources/                                 /calendar/  301
+/about/                                     /about-us/  301
+/modern-business/*                          /contact-2/  301
+/supporting-sponsor-interest-form/          /become-a-team-sponsor/  301
+/blue-sponsor-interest-form/                /become-a-team-sponsor/  301
+/blue-and-gold-sponsor-interest-form/       /become-a-team-sponsor/  301
+/wp-admin/*                                 /  301
+/wp-login.php                               /  301

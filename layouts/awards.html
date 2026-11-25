@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<section class="section">
+  <div class="container">
+    <h2 class="section__title">FIRST Robotics Awards We've Won</h2>
+    <ul class="badges">
+      {{ range .Params.award_types }}<li class="badge">{{ partial "icon.html" "trophy" }}{{ . }}</li>{{ end }}
+    </ul>
+  </div>
+</section>
+<section class="section section--tint">
+  <div class="container timeline">
+    {{ range .Params.seasons }}
+      <article class="timeline__season">
+        <h2 class="timeline__year">{{ .season }}</h2>
+        <div class="timeline__body">
+          <ul class="award-list">
+            {{ range .awards }}
+              <li>
+                <strong>{{ .title }}</strong>
+                <span class="award-list__event">{{ .event }}</span>
+                {{ with .note }}<span class="award-list__note">{{ . }}</span>{{ end }}
+              </li>
+            {{ end }}
+          </ul>
+          {{ with .photos }}
+            <div class="gallery">
+              {{ range . }}{{ partial "img.html" (dict "src" .src "alt" .alt "fill" "800x533" "width" 800 "sizes" "(min-width: 900px) 280px, 90vw") }}{{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

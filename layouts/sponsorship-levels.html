@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<section class="section">
+  <div class="container">
+    <div class="container--narrow prose prose--center">{{ .Content }}</div>
+    <ul class="tiers">
+      {{ range .Params.levels }}
+        <li class="tier tier--{{ .name | urlize }}{{ if .featured }} tier--featured{{ end }}">
+          <h2 class="tier__name">{{ .name }}</h2>
+          <p class="tier__amount">{{ .amount }}</p>
+          <p class="tier__logo">{{ .logo_size }}</p>
+          <ul class="tier__benefits">{{ range .benefits }}<li>{{ . }}</li>{{ end }}</ul>
+        </li>
+      {{ end }}
+    </ul>
+    <p class="center"><a class="btn btn--primary" href="{{ "/become-a-team-sponsor/" | relURL }}">Become a Team Sponsor</a></p>
+  </div>
+</section>
+{{ end }}

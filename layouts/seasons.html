@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<section class="section">
+  <div class="container season-list">
+    {{ range .Params.seasons }}
+      <article class="season" id="season-{{ .season | urlize }}">
+        <header class="season__head">
+          <h2 class="season__title">{{ .season }} Season</h2>
+          {{ with .game }}<p class="season__game">Game: {{ . }}</p>{{ end }}
+        </header>
+        <div class="season__grid">
+          <div class="season__col">
+            <h3 class="season__label">Game Information</h3>
+            {{ range .game_images }}<div class="season__media season__media--contain">{{ partial "img.html" (dict "src" .src "alt" .alt "width" 1200 "sizes" "(min-width: 900px) 540px, 90vw") }}</div>{{ end }}
+          </div>
+          <div class="season__col">
+            <h3 class="season__label">{{ .kind | default "Our Robot" }}</h3>
+            {{ range .team_images }}<div class="season__media">{{ partial "img.html" (dict "src" .src "alt" .alt "width" 1200 "sizes" "(min-width: 900px) 540px, 90vw") }}</div>{{ end }}
+          </div>
+        </div>
+      </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

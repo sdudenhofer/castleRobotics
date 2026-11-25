@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ $title := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) }}
+{{ $desc := .Description | default site.Params.description }}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="theme-color" content="#0b1f44">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with resources.Get site.Params.logo }}
+  {{ $og := .Resize "600x png" }}
+  <meta property="og:image" content="{{ $og.Permalink }}">
+{{ end }}
+
+{{ with resources.Get "images/brand/favicon.png" }}
+  {{ $ico := .Resize "64x64 png" }}
+  {{ $apple := .Resize "180x180 png" }}
+  <link rel="icon" type="image/png" href="{{ $ico.RelPermalink }}">
+  <link rel="apple-touch-icon" href="{{ $apple.RelPermalink }}">
+{{ end }}
+
+{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

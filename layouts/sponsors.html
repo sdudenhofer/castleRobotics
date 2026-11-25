@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<section class="section">
+  <div class="container">
+    {{ partial "sponsor-grid.html" . }}
+    <div class="cta-band">
+      <div>
+        <h2>Want to support Castle Robotics?</h2>
+        <p>Sponsorships fund our materials, technology, travel and competitions, and every gift is tax deductible.</p>
+      </div>
+      <a class="btn btn--gold" href="{{ "/sponsors/become-a-sponsor/" | relURL }}">See Sponsorship Levels</a>
+    </div>
+  </div>
+</section>
+{{ end }}

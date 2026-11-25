@@ -1,0 +1,301 @@
+# Pages CMS configuration (https://pagescms.org): a free, browser-based editor
+# for this GitHub repo. Board members and students can sign in with GitHub and
+# edit sponsors, team members, awards, seasons and competitions through forms.
+# Every save is a git commit, and Cloudflare redeploys the site automatically.
+
+media:
+  input: assets/images
+  output: images
+
+content:
+  - name: sponsors
+    label: Sponsors
+    type: file
+    path: data/sponsors.yaml
+    format: yaml
+    fields:
+      - name: sponsors
+        label: Sponsors (shown in this order)
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Company name, type: string, required: true }
+          - { name: logo, label: Logo, type: image, required: true, options: { path: assets/images/sponsors } }
+          - { name: url, label: Website, type: string }
+
+  - name: team
+    label: Our Team
+    type: file
+    path: content/new-team.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: aliases, label: Old addresses (do not change), type: string, list: true }
+      - name: officers
+        label: Student officers
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: role, label: Role, type: string }
+          - { name: photo, label: Photo, type: image, options: { path: assets/images/team } }
+      - name: mentors
+        label: Head coach & lead mentors
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: role, label: Role, type: string }
+      - name: board
+        label: Board of directors
+        type: object
+        list: true
+        fields:
+          - { name: role, label: Position, type: string }
+          - { name: names, label: Names, type: string, list: true }
+
+  - name: awards
+    label: Awards & Achievements
+    type: file
+    path: content/awards.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: award_types, label: Award types won, type: string, list: true }
+      - name: seasons
+        label: Seasons (newest first)
+        type: object
+        list: true
+        fields:
+          - { name: season, label: Season (e.g. 2026–2027), type: string }
+          - name: awards
+            label: Awards
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Award, type: string }
+              - { name: event, label: Event or person, type: string }
+              - { name: note, label: Note (optional), type: string }
+          - name: photos
+            label: Photos
+            type: object
+            list: true
+            fields:
+              - { name: src, label: Photo, type: image, options: { path: assets/images/awards } }
+              - { name: alt, label: Photo description, type: string }
+
+  - name: seasons
+    label: Seasons
+    type: file
+    path: content/seasons.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - name: seasons
+        label: Seasons (newest first)
+        type: object
+        list: true
+        fields:
+          - { name: season, label: Season (e.g. 2026–2027), type: string }
+          - { name: game, label: Game name, type: string }
+          - name: game_images
+            label: Game images
+            type: object
+            list: true
+            fields:
+              - { name: src, label: Image, type: image, options: { path: assets/images/seasons } }
+              - { name: alt, label: Image description, type: string }
+          - { name: kind, label: Team section heading, type: select, options: { values: [Our Robot, Our Season] } }
+          - name: team_images
+            label: Robot / team images
+            type: object
+            list: true
+            fields:
+              - { name: src, label: Image, type: image, options: { path: assets/images/seasons } }
+              - { name: alt, label: Image description, type: string }
+
+  - name: calendar
+    label: Competitions & Calendar
+    type: file
+    path: content/calendar.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - name: competitions
+        label: Competitions
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Event name, type: string }
+          - { name: start, label: Start date, type: date }
+          - { name: end, label: End date, type: date }
+          - { name: venue, label: Venue, type: string }
+          - { name: address, label: Address, type: string }
+          - { name: url, label: Event website, type: string }
+          - { name: note, label: Note (optional), type: string }
+      - { name: calendar_embed, label: Google Calendar embed URL (optional), type: string }
+      - { name: body, label: Extra text, type: text }
+
+  - name: home
+    label: Home page
+    type: file
+    path: content/_index.md
+    fields:
+      - { name: title, label: Intro heading, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - name: hero
+        label: Banner
+        type: object
+        fields:
+          - { name: eyebrow, label: Small label, type: string }
+          - { name: heading, label: Heading, type: string }
+          - { name: subheading, label: Subheading, type: text }
+          - name: buttons
+            label: Buttons
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Label, type: string }
+              - { name: url, label: Link, type: string }
+      - name: stats
+        label: Counters (leave blank to hide)
+        type: object
+        fields:
+          - { name: students, label: Student members, type: number }
+          - { name: mentors, label: Mentors, type: number }
+      - { name: body, label: Intro text, type: text }
+
+  - name: about
+    label: About Us
+    type: file
+    path: content/about-us.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: join
+    label: Join Us
+    type: file
+    path: content/join-us.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: image, label: Photo, type: image, options: { path: assets/images/pages } }
+      - { name: image_alt, label: Photo description, type: string }
+      - { name: interests, label: Interested in, type: string, list: true }
+      - { name: teams, label: Our teams, type: string, list: true }
+      - { name: benefits, label: Top 10 benefits, type: string, list: true }
+      - { name: form_url, label: Interest form link (optional), type: string }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: levels
+    label: Sponsorship Levels
+    type: file
+    path: content/become-a-sponsor.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - name: levels
+        label: Levels
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Level, type: string }
+          - { name: amount, label: Amount, type: string }
+          - { name: logo_size, label: Logo size, type: string }
+          - { name: featured, label: Highlight this level, type: boolean }
+          - { name: benefits, label: Benefits, type: string, list: true }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: become-sponsor
+    label: Become a Team Sponsor
+    type: file
+    path: content/become-a-team-sponsor.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: safety
+    label: Team Safety
+    type: file
+    path: content/team-safety.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: forms
+    label: Forms & Handbook
+    type: file
+    path: content/forms.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: spirit
+    label: Team Spirit Wear
+    type: file
+    path: content/spirit-wear.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: order_form, label: Order form PDF, type: file, options: { path: static/files } }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: contact
+    label: Contact Us
+    type: file
+    path: content/contact.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: aliases, label: Old addresses (do not change), type: string, list: true }
+      - { name: form_action, label: Contact form endpoint (optional), type: string }
+      - { name: body, label: Page content (Markdown), type: text }
+
+  - name: our-sponsors
+    label: Our Sponsors page
+    type: file
+    path: content/our-sponsors.md
+    fields:
+      - { name: title, label: Page title, type: string }
+      - { name: lead, label: Subtitle, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: url, label: Page address (do not change), type: string }
+      - { name: layout, label: Layout (do not change), type: string }
+      - { name: body, label: Page content (Markdown), type: text }

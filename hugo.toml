@@ -1,0 +1,151 @@
+baseURL = "https://castlerobotics.com/"
+locale = "en-US"
+title = "Castle Robotics Club"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "rss"]
+
+[params]
+  description = "FRC Team 6498 from Castle High School in Newburgh, Indiana. An award-winning FIRST Robotics Competition team."
+  teamNumber = "6498"
+  tagline = "To create and promote a lasting impact of science and technology for our community with a long-term goal of building a firm foundation for the next generation of STEAM."
+  address = "3344 IN-261, Newburgh, IN 47630"
+  mapURL = "https://maps.google.com/?q=3344%20IN-261,%20Newburgh,%20IN%2047630"
+  email = "castlerobotics6498@gmail.com"
+  phone = "(812) 853-3331"
+  founded = 2016
+  logo = "images/brand/logo.png"
+
+  [[params.social]]
+    name = "Facebook"
+    url = "https://www.facebook.com/FRC6498/"
+  [[params.social]]
+    name = "Instagram"
+    url = "https://www.instagram.com/frc6498/"
+  [[params.social]]
+    name = "X"
+    url = "https://twitter.com/castle6498"
+  [[params.social]]
+    name = "YouTube"
+    url = "https://www.youtube.com/channel/UCQG7O_Vl9-W6z3ri7BBoRLg"
+
+# ---------------------------------------------------------------------------
+# Navigation. Items with a "parent" appear in that item's dropdown.
+# ---------------------------------------------------------------------------
+[menus]
+  [[menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    name = "About"
+    identifier = "about"
+    url = "/about-us/"
+    weight = 20
+  [[menus.main]]
+    name = "About Us"
+    parent = "about"
+    pageRef = "/about-us"
+    weight = 1
+  [[menus.main]]
+    name = "Our Team"
+    parent = "about"
+    pageRef = "/new-team"
+    weight = 2
+  [[menus.main]]
+    name = "Awards & Achievements"
+    parent = "about"
+    pageRef = "/awards"
+    weight = 3
+  [[menus.main]]
+    name = "Join Us"
+    pageRef = "/join-us"
+    weight = 30
+  [[menus.main]]
+    name = "Sponsors"
+    identifier = "sponsors"
+    url = "/sponsors/our-sponsors/"
+    weight = 40
+  [[menus.main]]
+    name = "Our Sponsors"
+    parent = "sponsors"
+    pageRef = "/our-sponsors"
+    weight = 1
+  [[menus.main]]
+    name = "Sponsorship Levels"
+    parent = "sponsors"
+    pageRef = "/become-a-sponsor"
+    weight = 2
+  [[menus.main]]
+    name = "Become a Team Sponsor"
+    parent = "sponsors"
+    pageRef = "/become-a-team-sponsor"
+    weight = 3
+  [[menus.main]]
+    name = "Seasons"
+    pageRef = "/seasons"
+    weight = 50
+  [[menus.main]]
+    name = "Resources"
+    identifier = "resources"
+    url = "/calendar/"
+    weight = 60
+  [[menus.main]]
+    name = "Competitions & Calendar"
+    parent = "resources"
+    pageRef = "/calendar"
+    weight = 1
+  [[menus.main]]
+    name = "Team Safety"
+    parent = "resources"
+    pageRef = "/team-safety"
+    weight = 2
+  [[menus.main]]
+    name = "Forms & Handbook"
+    parent = "resources"
+    pageRef = "/forms"
+    weight = 3
+  [[menus.main]]
+    name = "Team Spirit Wear"
+    parent = "resources"
+    pageRef = "/spirit-wear"
+    weight = 4
+  [[menus.main]]
+    name = "FIRST Scholarships"
+    parent = "resources"
+    url = "https://www.firstinspires.org/alumni/scholarships"
+    weight = 5
+  [[menus.main]]
+    name = "Contact Us"
+    pageRef = "/contact"
+    weight = 70
+
+  [[menus.footer]]
+    name = "Home"
+    pageRef = "/"
+    weight = 1
+  [[menus.footer]]
+    name = "About Us"
+    pageRef = "/about-us"
+    weight = 2
+  [[menus.footer]]
+    name = "Join Us"
+    pageRef = "/join-us"
+    weight = 3
+  [[menus.footer]]
+    name = "Our Sponsors"
+    pageRef = "/our-sponsors"
+    weight = 4
+  [[menus.footer]]
+    name = "Contact Us"
+    pageRef = "/contact"
+    weight = 5
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[imaging]
+  resampleFilter = "Lanczos"
+  [imaging.webp]
+    quality = 82
+  [imaging.jpeg]
+    quality = 82
